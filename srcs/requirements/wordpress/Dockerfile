@@ -10,19 +10,20 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
-# Copy the www.conf file into the container
-COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
-
 # Make the run directory to allow FPM to run
 RUN mkdir /run/php/
-
-# Copy the Wordpress Script into the container, and set it as entrypoint
-COPY ./tools/setup_wordpress.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/setup_wordpress.sh
 
 # Set directory
 WORKDIR /var/www/html/
 
+# Copy the www.conf file into the container
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
+
+# Copy the Wordpress Script into the container, and set it as entrypoint
+COPY ./tools/setup_wordpress.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/setup_wordpress.sh
 ENTRYPOINT [ "/usr/local/bin/setup_wordpress.sh" ]
+
+EXPOSE 9000
 
 CMD [ "/usr/sbin/php-fpm7.4", "-F" ]
