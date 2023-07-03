@@ -3,7 +3,7 @@
 # Check if Wordpress is already installed
 if [ -f ./wp-config.php ]
 then
-	echo -e "\033[1;33mWordpress already installed\033[0m"
+	echo -e "\033[1;33mWordpress already setup\033[0m"
 else
 	# Download Wordpress, move contents to current directory, and delete garbage
 	wget http://wordpress.org/latest.tar.gz
