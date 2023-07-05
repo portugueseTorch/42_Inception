@@ -1,2 +1,2 @@
 all:
-	@echo "Hello from Makefile"
+	@docker compose -f ./srcs/docker-compose.yml up -d --build

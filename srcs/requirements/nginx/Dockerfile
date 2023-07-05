@@ -5,7 +5,7 @@ RUN apt-get update && \
 	apt-get install -y nginx openssl
 
 # Create the folder to store the TSL certification
-RUN mkdir /etc/nginx/ssl
+RUN mkdir -p /etc/nginx/ssl
 
 # Create a new ssl key: RSA key with 4096 bits, self-signed using
 # sha256 hashing, valid for 365 days and with no encryption
@@ -18,7 +18,6 @@ RUN openssl req -newkey rsa:4096 \
 	-keyout /etc/nginx/ssl/gda-cruz.key
 
 COPY ./conf/nginx.conf /etc/nginx/conf.d/
-COPY ./index.html /var/www/html/
 
 EXPOSE 443
 

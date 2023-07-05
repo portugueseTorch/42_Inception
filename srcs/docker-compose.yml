@@ -3,13 +3,55 @@ version: '3.7'
 services:
   nginx:
     container_name: nginx
-    build: requirements/nginx
-    ports:
-      - "443:443"
+    build: ./requirements/nginx/
+    init: true
     restart: on-failure
+    ports:
+      - '443:443'
+    networks:
+      - inception_network
     volumes:
-      - 
+      - wordpress_data:/var/www/html
+  
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    init: true
+    restart: on-failure
+    networks:
+      - inception_network
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    env_file:
+      - .env
 
   wordpress:
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    build: ./requirements/wordpress
+    init: true
+    restart: on-failure
+    networks:
+      - inception_network
+    volumes:
+      - wordpress_data:/var/www/html
     env_file:
-      - ./.env
+      - .env
+
+networks:
+  inception_network:
+    driver: bridge
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/gda-cruz/data/mysql
+
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/gda-cruz/data/wordpress
