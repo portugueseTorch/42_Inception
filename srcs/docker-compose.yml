@@ -3,6 +3,8 @@ version: '3.7'
 services:
   nginx:
     container_name: nginx
+    depends_on:
+      - redis
     build: ./requirements/nginx/
     init: true
     restart: on-failure
@@ -30,6 +32,20 @@ services:
     depends_on:
       - mariadb
     build: ./requirements/wordpress
+    init: true
+    restart: on-failure
+    networks:
+      - inception_network
+    volumes:
+      - wordpress_data:/var/www/html
+    env_file:
+      - .env
+
+  redis:
+    container_name: redis
+    depends_on:
+      - wordpress
+    build: ./requirements/bonus/redis
     init: true
     restart: on-failure
     networks:

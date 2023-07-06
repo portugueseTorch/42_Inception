@@ -3,7 +3,8 @@ FROM debian:oldstable
 # Update and install dependencies
 RUN apt-get update && apt-get install -y \
 	wget curl tar \
-	php7.4 php-fpm php-mysql php-mbstring
+	php7.4 php-fpm php-mysql php-mbstring \
+	redis php-redis
 
 # Installing WP-CLI, making the file executable and adding it to PATH
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
