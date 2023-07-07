@@ -7,6 +7,8 @@ services:
       - '443:443'
     volumes:
       - wordpress_data:/var/www/html
+    depends_on:
+      - redis
     restart: always
     networks:
       - inception
@@ -34,6 +36,17 @@ services:
     restart: always
     networks:
       - inception
+  
+  redis:
+    container_name: redis
+    build: ./requirements/redis
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    restart: always
+    networks:
+      - inception
 
 networks:
   inception:
@@ -44,11 +57,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/tocha/data/wordpress
+      device: /home/gda-cruz/data/wordpress
       o: bind
   mariadb_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/tocha/data/mysql
+      device: /home/gda-cruz/data/mysql
       o: bind
