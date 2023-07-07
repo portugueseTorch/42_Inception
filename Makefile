@@ -2,11 +2,11 @@ COMPOSE_DIR = ./srcs/docker-compose.yml
 
 all: env
 	@echo "\033[0;33mBuilding Containers...\033[0m"
-	@docker compose -f $(COMPOSE_DIR) up -d --build
+	@docker-compose -f $(COMPOSE_DIR) up -d --build
 	@echo "\033[0;32m[ Inception successfully built! ]\033[0m"
 
 down:
-	@if [ -f srcs/.env ] ; then docker compose -f $(COMPOSE_DIR) down; fi;
+	@if [ -f srcs/.env ] ; then docker-compose -f $(COMPOSE_DIR) down; fi;
 
 env:
 	@if [ ! -f srcs/.env ] ; then\
@@ -22,9 +22,12 @@ env:
 clean: down
 	@echo "\033[0;33mCleaning Up...\033[0m"
 	@docker system prune -fa
+	@sudo rm -rf ~/data/mysql/* ~/data/wordpress/*
+	@sudo docker volume ls -q > test
+	@if [ -s test ]; then sudo docker volume rm $$(sudo docker volume ls -q); fi;
+	@sudo rm -rf test
 
 fclean: clean
-	@if [ -f srcs/.env ] ; then rm srcs/.env; fi;
 	@echo "\033[1;31mAll Inception files cleaned!\033[0m"
 
 re: fclean all

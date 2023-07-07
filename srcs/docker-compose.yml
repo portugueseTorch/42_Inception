@@ -1,75 +1,54 @@
-version: '3.7'
-
+version: '3'
 services:
   nginx:
     container_name: nginx
-    depends_on:
-      - redis
-    build: ./requirements/nginx/
-    init: true
-    restart: on-failure
+    build: ./requirements/nginx
     ports:
       - '443:443'
-    networks:
-      - inception_network
     volumes:
       - wordpress_data:/var/www/html
-  
-  mariadb:
-    container_name: mariadb
-    build: ./requirements/mariadb
-    init: true
-    restart: on-failure
+    restart: always
     networks:
-      - inception_network
-    volumes:
-      - mariadb_data:/var/lib/mysql
-    env_file:
-      - .env
+      - inception
 
   wordpress:
     container_name: wordpress
+    build: ./requirements/wordpress
     depends_on:
       - mariadb
-    build: ./requirements/wordpress
-    init: true
-    restart: on-failure
-    networks:
-      - inception_network
-    volumes:
-      - wordpress_data:/var/www/html
     env_file:
       - .env
+    volumes:
+      - wordpress_data:/var/www/html
+    restart: always
+    networks:
+      - inception
 
-  redis:
-    container_name: redis
-    depends_on:
-      - wordpress
-    build: ./requirements/bonus/redis
-    init: true
-    restart: on-failure
-    networks:
-      - inception_network
-    volumes:
-      - wordpress_data:/var/www/html
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
     env_file:
       - .env
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: always
+    networks:
+      - inception
 
 networks:
-  inception_network:
+  inception:
     driver: bridge
 
 volumes:
-  mariadb_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/gda-cruz/data/mysql
-      o: bind
-
   wordpress_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/gda-cruz/data/wordpress
+      device: /home/tocha/data/wordpress
+      o: bind
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/tocha/data/mysql
       o: bind

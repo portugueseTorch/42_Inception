@@ -5,7 +5,7 @@ service mariadb start
 mysql_upgrade --force
 
 # Check if the database already exists before proceding with setup
-if [ -d /var/lib/mysql/$MYSQL_DATABASE ]
+if [ -d "/var/lib/mysql/$MYSQL_DB_NAME" ]
 then
 	echo -e "\033[1;33mMariaDB already setup\033[0m"
 else
@@ -23,8 +23,8 @@ mysql_secure_installation << EOF
 
 Y
 Y
-$MYSQL_ROOT_PASSWORD
-$MYSQL_ROOT_PASSWORD
+$MYSQL_DB_ROOT_PASSWORD
+$MYSQL_DB_ROOT_PASSWORD
 Y
 n
 Y
@@ -33,11 +33,11 @@ EOF
 
 # Grant all privileges to root, and create the database if it doesn't yet exist
 mariadb -u root << EOF
-GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; FLUSH PRIVILEGES;
-CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE; GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'; FLUSH PRIVILEGES;
+GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_DB_ROOT_PASSWORD'; FLUSH PRIVILEGES;
+CREATE DATABASE IF NOT EXISTS $MYSQL_DB_NAME; GRANT ALL ON $MYSQL_DB_NAME.* TO '$MYSQL_DB_USER'@'%' IDENTIFIED BY '$MYSQL_DB_PASSWORD'; FLUSH PRIVILEGES;
 EOF
 
-mariadb -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < /usr/local/bin/wordpress.sql
+mariadb -u $MYSQL_DB_USER -p$MYSQL_DB_PASSWORD $MYSQL_DB_NAME < /usr/local/bin/wordpress.sql
 
 fi
 
