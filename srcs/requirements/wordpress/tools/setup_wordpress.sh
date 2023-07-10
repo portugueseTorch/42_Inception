@@ -6,7 +6,7 @@ then
 	echo -e "\033[1;33mWordpress already setup\033[0m"
 else
 
-	sleep 2
+	sleep 3
 	# Download Wordpress, move contents to current directory, and delete garbage
 	wget http://wordpress.org/latest.tar.gz
 	tar -xf latest.tar.gz

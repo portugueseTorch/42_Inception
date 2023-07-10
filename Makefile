@@ -2,11 +2,11 @@ COMPOSE_DIR = ./srcs/docker-compose.yml
 
 all: env
 	@echo "\033[0;33mBuilding Containers...\033[0m"
-	@docker-compose -f $(COMPOSE_DIR) up -d --build
+	@docker compose -f $(COMPOSE_DIR) up -d --build
 	@echo "\033[0;32m[ Inception successfully built! ]\033[0m"
 
 down:
-	@if [ -f srcs/.env ] ; then docker-compose -f $(COMPOSE_DIR) down; fi;
+	@if [ -f srcs/.env ] ; then docker compose -f $(COMPOSE_DIR) down; fi;
 
 env:
 	@if [ ! -f srcs/.env ] ; then\
