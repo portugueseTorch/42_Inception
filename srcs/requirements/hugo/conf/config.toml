@@ -1,0 +1,45 @@
+baseURL = "http://gda-cruz.42.fr"
+languageCode = "en-us"
+title = "Inception Static Website"
+
+theme = "github-style"
+canonifyURLs = true
+
+[params]
+  author = "gda-cruz"
+  description = "Was it easy? No. Was it worth it? Also no."
+  github = "gda-cruz"
+  facebook = "gda-cruz"
+  twitter = "gda-cruz"
+  linkedin = "gda-cruz"
+  instagram = "gda-cruz"
+  tumblr = "gda-cruz"
+  email = "gda-cruz@gmail.com"
+  url = "https://gda-cruz.com"
+  keywords = "tired, annoyed, desperate"
+  rss = true
+  lastmod = true
+  userStatusEmoji = "😀"
+  favicon = "/static/avatar.jpg"
+  location = "Lisbon"
+
+  [params.gitalk]
+    clientID = "Your client ID" 
+    clientSecret = "Your client secret" 
+    repo = "repo"
+    owner = "gda-cruz"
+    admin = "gda-cruz"
+    id = "location.pathname"
+    labels = "gitalk"
+    perPage = 15
+    pagerDirection = "last"
+    createIssueManually = true
+    distractionFreeMode = false
+
+  [[params.links]]
+    title = "Link2"
+    href = "https://meik2333.com"
+    icon = "/var/hugo/me/themes/github-style/static/avatar.jpg"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]

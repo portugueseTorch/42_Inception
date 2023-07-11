@@ -4,7 +4,7 @@ services:
     container_name: nginx
     build: ./requirements/nginx
     ports:
-      - '443:443'
+      - 443:443
     volumes:
       - wordpress_data:/var/www/html
     depends_on:
@@ -44,6 +44,13 @@ services:
       - wordpress
     volumes:
       - wordpress_data:/var/www/html
+    restart: always
+    networks:
+      - inception
+
+  hugo:
+    container_name: hugo
+    build: ./requirements/hugo
     restart: always
     networks:
       - inception
