@@ -1,45 +1,70 @@
 baseURL = "http://gda-cruz.42.fr"
 languageCode = "en-us"
 title = "Inception Static Website"
+theme = "hugo-coder"
 
-theme = "github-style"
-canonifyURLs = true
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+paginate = 20
+
+disqusShortname = "yourdiscussshortname"
+
+[markup.highlight]
+style = "github-dark"
 
 [params]
-  author = "gda-cruz"
-  description = "Was it easy? No. Was it worth it? Also no."
-  github = "gda-cruz"
-  facebook = "gda-cruz"
-  twitter = "gda-cruz"
-  linkedin = "gda-cruz"
-  instagram = "gda-cruz"
-  tumblr = "gda-cruz"
-  email = "gda-cruz@gmail.com"
-  url = "https://gda-cruz.com"
-  keywords = "tired, annoyed, desperate"
-  rss = true
-  lastmod = true
-  userStatusEmoji = "😀"
-  favicon = "/static/avatar.jpg"
-  location = "Lisbon"
+  author = "Gabriel Tocha"
+  info = "Student at 42 Lisboa"
+  description = "This is way too much effort for way too little reward..."
+  keywords = "blog,developer,personal"
+  avatarURL = "themes/hugo-code/images/avatar.jpg"
+  #gravatar = "john.doe@example.com"
 
-  [params.gitalk]
-    clientID = "Your client ID" 
-    clientSecret = "Your client secret" 
-    repo = "repo"
-    owner = "gda-cruz"
-    admin = "gda-cruz"
-    id = "location.pathname"
-    labels = "gitalk"
-    perPage = 15
-    pagerDirection = "last"
-    createIssueManually = true
-    distractionFreeMode = false
+  faviconSVG = "/img/favicon.svg"
+  favicon_32 = "/img/favicon-32x32.png"
+  favicon_16 = "/img/favicon-16x16.png"
 
-  [[params.links]]
-    title = "Link2"
-    href = "https://meik2333.com"
-    icon = "/var/hugo/me/themes/github-style/static/avatar.jpg"
+  since = 2019
 
-[frontmatter]
-  lastmod = ["lastmod", ":fileModTime", ":default"]
+  enableTwemoji = true
+
+  colorScheme = "auto"
+  hidecolorschemetoggle = false
+
+  # customCSS = ["css/custom.css"]
+  # customSCSS = ["scss/custom.scss"]
+  # customJS = ["js/custom.js"]
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+  author = "authors"
+
+# Social links
+[[params.social]]
+  name = "Github"
+  icon = "fa fa-github fa-2x"
+  weight = 1
+  url = "https://github.com/portugueseTorch"
+[[params.social]]
+  name = "Gitlab"
+  icon = "fa fa-gitlab fa-2x"
+  weight = 2
+  url = "https://www.aopaagroecologia.org/copy-of-conhe%C3%A7a-a-aopa"
+[[params.social]]
+  name = "Twitter"
+  icon = "fa fa-twitter fa-2x"
+  weight = 3
+  url = "https://carculture.nz/"
+
+# Menu links
+[[menu.main]]
+  name = "Blog"
+  weight = 1
+  url  = "posts/"
+[[menu.main]]
+  name = "About"
+  weight = 2
+  url = "about/"
