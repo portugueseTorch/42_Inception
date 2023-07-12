@@ -1,70 +1,33 @@
-baseURL = "http://gda-cruz.42.fr"
-languageCode = "en-us"
-title = "Inception Static Website"
-theme = "hugo-coder"
+baseURL = "https://gda-cruz.42.fr/static"
+defaultContentLanguage = "en"
+languageCode = "en"
 
-languagecode = "en"
-defaultcontentlanguage = "en"
+title = "Static Inception Page"
 
-paginate = 20
+theme = "gokarna"
 
-disqusShortname = "yourdiscussshortname"
+# Automatically generate robots.txt
+enableRobotsTXT = true
 
-[markup.highlight]
-style = "github-dark"
+[menu]
+  [[menu.main]]
+    # Unique identifier for a menu item
+    identifier = "index"
+    url = "/about/"
+    # Display name
+    name = "About"
+    # Weights are used to determine the ordering
+    weight = 1
+    
+  [[menu.main]]
+    identifier = "github"
+    url = "https://github.com/portugueseTorch"
+    weight = 3
+    
+    # We use feather-icons: https://feathericons.com/
+    pre = "<span data-feather='github'></span>"
 
 [params]
-  author = "Gabriel Tocha"
-  info = "Student at 42 Lisboa"
-  description = "This is way too much effort for way too little reward..."
-  keywords = "blog,developer,personal"
-  avatarURL = "themes/hugo-code/images/avatar.jpg"
-  #gravatar = "john.doe@example.com"
-
-  faviconSVG = "/img/favicon.svg"
-  favicon_32 = "/img/favicon-32x32.png"
-  favicon_16 = "/img/favicon-16x16.png"
-
-  since = 2019
-
-  enableTwemoji = true
-
-  colorScheme = "auto"
-  hidecolorschemetoggle = false
-
-  # customCSS = ["css/custom.css"]
-  # customSCSS = ["scss/custom.scss"]
-  # customJS = ["js/custom.js"]
-
-[taxonomies]
-  category = "categories"
-  series = "series"
-  tag = "tags"
-  author = "authors"
-
-# Social links
-[[params.social]]
-  name = "Github"
-  icon = "fa fa-github fa-2x"
-  weight = 1
-  url = "https://github.com/portugueseTorch"
-[[params.social]]
-  name = "Gitlab"
-  icon = "fa fa-gitlab fa-2x"
-  weight = 2
-  url = "https://www.aopaagroecologia.org/copy-of-conhe%C3%A7a-a-aopa"
-[[params.social]]
-  name = "Twitter"
-  icon = "fa fa-twitter fa-2x"
-  weight = 3
-  url = "https://carculture.nz/"
-
-# Menu links
-[[menu.main]]
-  name = "Blog"
-  weight = 1
-  url  = "posts/"
-[[menu.main]]
-  name = "About"
-  weight = 2
-  url = "about/"
+  footer = "gda-cruz"
+  description = "Random inspirational quote right here"
+  avatarURL = "/images/torch.webp"
